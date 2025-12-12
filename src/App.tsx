@@ -2,7 +2,7 @@
 import './App.scss'
 import Score from './components/Score.tsx';
 import Game from './components/Game.tsx';
-import { useQuiz } from './components/QuizContex.tsx';
+import { useQuiz } from './components/QuizContext.tsx';
 
 function App() {
   const state = useQuiz();
@@ -11,8 +11,8 @@ function App() {
   return (
     <>
       <Score />
-      <Game /> 
-       
+      <Game />
+
     </>
   )
 }
