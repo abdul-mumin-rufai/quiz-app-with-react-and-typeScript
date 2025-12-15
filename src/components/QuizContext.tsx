@@ -1,14 +1,27 @@
 import { createContext, useContext, useReducer } from 'react';
 
-type Status = "idle" | "fetching" | "ready"
+type Status = "idle" | "fetching" | "ready"|"error"
 
 
-// context intialisation. ie how the context should look like.
+export interface QuizQuestion {
+    type: 'boolean' | 'multiple';
+    difficulty: 'easy' | 'medium' | 'hard';
+    category: string;
+    question: string;
+    correct_answer: string;
+    incorrect_answers: string[];
+}
+
+export interface QuizApiResponse {
+    response_code: number;
+    results: QuizQuestion[];
+}
+
+// state intialisation. ie how the context should look like.
 interface QuizContext{
     state: QuizState,
     dispatch: React.Dispatch<QuizAction>
 }
-
 interface QuizState {
     gameStatus: Status
 };
