@@ -2,6 +2,13 @@ import { createContext, useContext, useReducer } from 'react';
 
 type Status = "idle" | "fetching" | "ready"
 
+
+// context intialisation. ie how the context should look like.
+interface QuizContext{
+    state: QuizState,
+    dispatch: React.Dispatch<QuizAction>
+}
+
 interface QuizState {
     gameStatus: Status
 };
@@ -12,14 +19,19 @@ type QuizAction =
 const initialState: QuizState = {
     gameStatus: "idle"
 }
-const quizContext = createContext<QuizState>(initialState);
+
+// context intialisation. ie how the context should look like.
+const quizContext = createContext<QuizContext>({
+    state: initialState,
+    dispatch: ()=> null
+});
 
 
-export function QuizProvider({ children }: { children: React.ReactNode }) {
+export function QuizProvider({ children }: { children: React.ReactElement }) {
     const [state, dispatch] = useReducer(QuizReducer,initialState);
 
     return (
-        <quizContext.Provider value={state}>
+        <quizContext.Provider value={{state, dispatch}}>
             {children}
         </quizContext.Provider>
 
