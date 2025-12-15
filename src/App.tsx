@@ -1,18 +1,34 @@
 import { useEffect } from 'react';
 import './App.scss'
+import FullPageLoader from './components/FullPageLoader';
 import Score from './components/Score.tsx';
 import Game from './components/Game.tsx';
-import { useQuiz } from './components/QuizContext.tsx';
+import { useQuiz, QuizQuestion, QuizApiResponse } from './components/QuizContext.tsx';
 
 function App() {
-  const { state } = useQuiz();
+  const { state, dispatch } = useQuiz();
   //console.log(state)
 
   async function fetchQuestion() {
-    const response = await fetch('https://opentdb.com/api.php?amount=1&category=18');
-    let data = await (response.json());
-    let question = data.results[0];
-    console.log('data', data);
+    try {
+      dispatch({ type: 'setStatus', payload: 'fetching' })
+
+      const response = await fetch('https://opentdb.com/api.php?amount=1&category=18');
+      let data: QuizApiResponse = await (response.json());
+      if (data.response_code === 0) {
+
+        let question: QuizQuestion = data.results[0];
+        dispatch({ type: 'setStatus', payload: "ready" });
+        console.log(question)
+
+      } else {
+        dispatch({ type: 'setStatus', payload: "error" });
+      }
+    } catch (error) {
+      console.log('error', error)
+      dispatch({ type: 'setStatus', payload: "error" });
+    }
+
   }
 
   useEffect(() => {
@@ -23,8 +39,18 @@ function App() {
 
   return (
     <>
-      <Score />
-      <Game />
+      {
+        state.gameStatus == 'fetching' ?
+          <FullPageLoader /> : state.gameStatus == 'error' ?
+            <p>Error while fetching the question!!!</p> :
+            state.gameStatus == 'ready' ?
+              <>
+                <Score />
+                <Game />
+              </> :
+              ''
+      }
+
 
     </>
   )
