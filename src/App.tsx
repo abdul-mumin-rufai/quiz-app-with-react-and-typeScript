@@ -19,7 +19,7 @@ function App() {
 
         let question: QuizQuestion = data.results[0];
         dispatch({ type: 'setStatus', payload: "ready" });
-        console.log(question)
+        dispatch({ type: 'setQuizQuestion', payload: question })
 
       } else {
         dispatch({ type: 'setStatus', payload: "error" });

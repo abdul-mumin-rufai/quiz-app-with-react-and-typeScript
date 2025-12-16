@@ -23,14 +23,16 @@ interface QuizContext{
     dispatch: React.Dispatch<QuizAction>
 }
 interface QuizState {
-    gameStatus: Status
+    gameStatus: Status,
+    question: QuizQuestion| null
 };
 
 type QuizAction =
-    | { type: "setStatus"; payload: Status }
+    { type: "setStatus"; payload: Status } | { type: "setQuizQuestion"; payload: QuizQuestion }
 
 const initialState: QuizState = {
-    gameStatus: "idle"
+    gameStatus: "idle",
+    question: null
 }
 
 // context intialisation. ie how the context should look like.
@@ -58,7 +60,10 @@ export function useQuiz() {
 function QuizReducer(state: QuizState, action: QuizAction): QuizState {
     switch (action.type) {
         case "setStatus":
-            return {...state, gameStatus:action.payload};
+            return { ...state, gameStatus: action.payload };
+        
+        case "setQuizQuestion":
+            return { ...state, question: action.payload};
         default:
             throw new Error("Unknown action");
     }
