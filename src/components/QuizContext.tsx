@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 
-type Status = "idle" | "fetching" | "ready"|"error"
+type Status = "idle" | "fetching" | "ready" | "error"
 
 
 export interface QuizQuestion {
@@ -18,35 +18,36 @@ export interface QuizApiResponse {
 }
 
 // state intialisation. ie how the context should look like.
-interface QuizContext{
+interface QuizContext {
     state: QuizState,
     dispatch: React.Dispatch<QuizAction>
 }
 interface QuizState {
     gameStatus: Status,
-    question: QuizQuestion| null
+    question: QuizQuestion | null  //fetch question before.
 };
 
 type QuizAction =
-    { type: "setStatus"; payload: Status } | { type: "setQuizQuestion"; payload: QuizQuestion }
+    { type: "setStatus"; payload: Status } |
+    { type: "setQuizQuestion"; payload: QuizQuestion }
 
 const initialState: QuizState = {
     gameStatus: "idle",
-    question: null
+    question: null  //fetch question before
 }
 
 // context intialisation. ie how the context should look like.
 const quizContext = createContext<QuizContext>({
     state: initialState,
-    dispatch: ()=> null
+    dispatch: () => null
 });
 
 
 export function QuizProvider({ children }: { children: React.ReactElement }) {
-    const [state, dispatch] = useReducer(QuizReducer,initialState);
+    const [state, dispatch] = useReducer(QuizReducer, initialState);
 
     return (
-        <quizContext.Provider value={{state, dispatch}}>
+        <quizContext.Provider value={{ state, dispatch }}>
             {children}
         </quizContext.Provider>
 
@@ -61,11 +62,10 @@ function QuizReducer(state: QuizState, action: QuizAction): QuizState {
     switch (action.type) {
         case "setStatus":
             return { ...state, gameStatus: action.payload };
-        
+
         case "setQuizQuestion":
-            return { ...state, question: action.payload};
+            return { ...state, question: action.payload };
         default:
             throw new Error("Unknown action");
     }
 }
-  

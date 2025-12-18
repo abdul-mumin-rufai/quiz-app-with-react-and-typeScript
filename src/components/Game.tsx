@@ -6,6 +6,7 @@ import { useQuiz } from './QuizContext.tsx';
 
 function Game() {
 
+   
     const { state } = useQuiz();
     return (
         <>
