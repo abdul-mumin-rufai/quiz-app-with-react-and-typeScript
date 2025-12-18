@@ -1,19 +1,20 @@
 import './AnswerOption.scss';
+import { decode } from 'html-entities';
 
 
-function AnswerOption({answer}: {answer : string}) {
+function AnswerOption({ answer }: { answer: string }) {
 
     return (
-        <>  
+        <>
             {
                 answer &&
                 <div className="answer-option">
-                    <p> 
-                       {answer}
+                    <p>
+                        {decode(answer)};
                     </p>
                 </div>
             }
-            
+
         </>
     )
 }
