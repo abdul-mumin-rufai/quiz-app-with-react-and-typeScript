@@ -13,8 +13,8 @@ export interface QuizQuestion {
 }
 
 export interface QuizApiResponse {
-    response_code: number;
-    results: QuizQuestion[];
+    response_code: number,
+    results: QuizQuestion[]
 }
 
 // state intialisation. ie how the context should look like.
@@ -24,16 +24,21 @@ interface QuizContext {
 }
 interface QuizState {
     gameStatus: Status,
-    question: QuizQuestion | null  //fetch question before.
+    question: QuizQuestion | null,  //fetch question before.
+    userAnswer: string | null
+    
 };
 
 type QuizAction =
     { type: "setStatus"; payload: Status } |
-    { type: "setQuizQuestion"; payload: QuizQuestion }
+    { type: "setQuizQuestion"; payload: QuizQuestion } |
+    { type: "setUserAnswer"; payload: string }
 
 const initialState: QuizState = {
     gameStatus: "idle",
-    question: null  //fetch question before
+    question: null, //fetch question before
+    userAnswer: null
+
 }
 
 // context intialisation. ie how the context should look like.
@@ -65,6 +70,8 @@ function QuizReducer(state: QuizState, action: QuizAction): QuizState {
 
         case "setQuizQuestion":
             return { ...state, question: action.payload };
+        case "setUserAnswer":
+            return { ...state, userAnswer: action.payload };
         default:
             throw new Error("Unknown action");
     }
