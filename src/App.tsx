@@ -18,6 +18,10 @@ function App() {
       if (data.response_code === 0) {
 
         let question: QuizQuestion = data.results[0];
+        let randomIndex = Math.round(Math.random() * question.incorrect_answers.length) //shuffling the correct and incorrect answers.
+        question.incorrect_answers.splice(randomIndex, 0, question.correct_answer)
+        
+
         dispatch({ type: 'setStatus', payload: "ready" });
         dispatch({ type: 'setQuizQuestion', payload: question })
 
