@@ -47,12 +47,10 @@ function App() {
         state.gameStatus == 'fetching' ?
           <FullPageLoader /> : state.gameStatus == 'error' ?
             <p>Error while fetching the question!!!</p> :
-            state.gameStatus == 'ready' ?
               <>
                 <Score />
                 <Game />
-              </> :
-              ''
+              </> 
       }
 
 
