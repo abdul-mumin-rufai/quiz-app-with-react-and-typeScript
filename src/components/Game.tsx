@@ -30,7 +30,10 @@ function Game() {
 
                 {
                     state.userAnswer && state.gameStatus == "answered" &&
-                    <Result />
+                    <>
+                        <Result />
+                        <button onClick={()=> {dispatch({type: "setStatus", payload: "idle"})}}>Next Question</button>
+                    </>
                 }
 
             </div>
