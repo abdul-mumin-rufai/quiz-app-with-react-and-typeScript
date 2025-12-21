@@ -16,6 +16,10 @@ export interface QuizApiResponse {
     response_code: number,
     results: QuizQuestion[]
 }
+interface Score {
+    correct: number,
+    incorrect: number 
+}
 
 // state intialisation. ie how the context should look like.
 interface QuizContext {
@@ -25,19 +29,22 @@ interface QuizContext {
 interface QuizState {
     gameStatus: Status,
     question: QuizQuestion | null,  //fetch question before.
-    userAnswer: string | null
+    userAnswer: string | null,
+    score: Score
     
 };
 
 type QuizAction =
     { type: "setStatus"; payload: Status } |
     { type: "setQuizQuestion"; payload: QuizQuestion } |
-    { type: "setUserAnswer"; payload: string }
+    { type: "setUserAnswer"; payload: string | null} |
+    { type: "setScore"; payload: "correct"| "incorrect"}
 
 const initialState: QuizState = {
     gameStatus: "idle",
     question: null, //fetch question before
-    userAnswer: null
+    userAnswer: null,
+    score: {correct: 0, incorrect: 0}
 
 }
 
@@ -72,6 +79,10 @@ function QuizReducer(state: QuizState, action: QuizAction): QuizState {
             return { ...state, question: action.payload };
         case "setUserAnswer":
             return { ...state, userAnswer: action.payload };
+        case "setScore":
+            let score = state.score; // check whether correct or incorrect
+            score[action.payload] += 1 // use the payload
+            return { ...state, score: score };
         default:
             throw new Error("Unknown action");
     }

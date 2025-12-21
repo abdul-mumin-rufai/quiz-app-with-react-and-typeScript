@@ -11,7 +11,8 @@ function App() {
 
   async function fetchQuestion() {
     try {
-      dispatch({ type: 'setStatus', payload: 'fetching' })
+      dispatch({ type: 'setStatus', payload: 'fetching' });
+      dispatch({ type: 'setUserAnswer', payload: null });
 
       const response = await fetch('https://opentdb.com/api.php?amount=1&category=18');
       let data: QuizApiResponse = await (response.json());
