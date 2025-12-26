@@ -10,7 +10,6 @@ import confetti from "https://cdn.skypack.dev/canvas-confetti";
 function Game() {
 
     const { state, dispatch } = useQuiz();
-    console.log(state.question)
 
     let wonAudio = new Audio('./sounds/won.wav');
     let lostAudio = new Audio('./sounds/lost.wav');
