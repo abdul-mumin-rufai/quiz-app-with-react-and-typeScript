@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.55.1",
     "firebase": "^12.7.0",
     "html-entities": "^2.6.0",
     "react": "^18.2.0",
@@ -27,5 +28,8 @@
     "sass": "^1.68.0",
     "typescript": "^5.0.2",
     "vite": "^7.3.1"
+  },
+  "overrides": {
+    "rollup": "npm:@rollup/wasm-node"
   }
 }
