@@ -60,3 +60,5 @@ function App() {
 }
 
 export default App
+
+//firebase deploy--only hosting: rufai - projects - quiz - app -with-react - and - typescript
