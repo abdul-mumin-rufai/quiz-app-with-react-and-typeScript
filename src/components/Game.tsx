@@ -4,7 +4,7 @@ import Result from './Result.tsx';
 import { useQuiz } from './QuizContext.tsx';
 import { decode } from 'html-entities';
 // @ts-ignore
-import confetti from "https://cdn.skypack.dev/canvas-confetti";
+import confetti from "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/+esm";
 
 
 function Game() {
