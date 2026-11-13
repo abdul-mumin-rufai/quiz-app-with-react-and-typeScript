@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "rufai-projects-react-js-typescript-quiz-app",
+    "site": "rufai-projects-quiz-app-with-react-typescript",
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
