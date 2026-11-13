@@ -4,9 +4,10 @@ import { useQuiz } from './QuizContext.tsx';
 function Score() {
     const { state } = useQuiz();
     return (
-        <>  
+        <>
             <div className="score">
                 <div>
+                    <small>Rufai Quiz Game.</small>
                     <small>Correct</small>
                     <span className="point">{state.score.correct}</span>
                     <span>X</span>
@@ -14,7 +15,7 @@ function Score() {
                     <small>Incorrect</small>
                 </div>
             </div>
-            
+
         </>
     )
 }

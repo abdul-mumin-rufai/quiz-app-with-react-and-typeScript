@@ -1,8 +1,7 @@
 React & TypeScript Quiz App
 A responsive, interactive quiz application built with React and TypeScript, featuring real-time scoring, dynamic question fetching, and clean state management.
 
-🔗 Live Demo: https://rufai-projects-quiz-app-with-react-and-typescript.web.app/
-
+🔗 Live Demo: https://rufai-projects-quiz-app-with-react-typescript.web.app/
 
 ✨ Features
 Dynamic Quiz Experience: Fetches random trivia questions from the Open Trivia API.
@@ -40,31 +39,35 @@ Installation & Setup
 Clone the repository:
 
 bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/quiz-app-react-typescript.git
+git clone https://github.com/abdul-mumin-rufai/quiz-app-with-react-and-typeScript
 cd quiz-app-react-typescript
 Install dependencies:
 
 bash
 npm install
+
 # or
+
 yarn install
 Start the development server:
 
 bash
 npm start
+
 # or
+
 yarn start
 The app will open in your browser at http://localhost:3000.
 
 📁 Project Structure
 text
 src/
-├── components/          # Reusable UI components (QuestionCard, ScoreBoard, etc.)
-├── context/             # React Context providers and logic (QuizContext)
-├── types/               # TypeScript type definitions (Question, QuizState)
-├── utils/               # Helper functions (API fetch, formatters)
-├── App.tsx              # Main application component
-└── index.tsx            # Application entry point
+├── components/ # Reusable UI components (QuestionCard, ScoreBoard, etc.)
+├── context/ # React Context providers and logic (QuizContext)
+├── types/ # TypeScript type definitions (Question, QuizState)
+├── utils/ # Helper functions (API fetch, formatters)
+├── App.tsx # Main application component
+└── index.tsx # Application entry point
 💡 Key Implementation Details
 State Management with Context API: Centralized the quiz state (questions, score, user answers) using React.createContext. This provides a clean pattern for state sharing without prop drilling.
 
